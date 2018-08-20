@@ -13,11 +13,21 @@ function flipCard() {
         firstCard = this;
     } else {
         // second click
+        if(firstCard == this){return}
         hasFlippedCard = false;
         secondCard = this;
 
         // do cards match 
-        
+        if(firstCard.dataset.house === secondCard.dataset.house) {
+            firstCard.removeEventListener('click', flipCard);
+            secondCard.removeEventListener('click', flipCard);
+            console.log('function exexuted')
+        } else {
+            setTimeout(() => {
+                firstCard.classList.remove('flip');
+                secondCard.classList.remove('flip');
+            }, 1000)
+        }
     }
 }
 
